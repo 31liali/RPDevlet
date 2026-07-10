@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Paneli</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👑 RPDevlet Admin Paneli</h1>
+
+<hr>
+
+<!-- Kullanıcı Ara -->
+
+<h2>🔎 Kullanıcı Ara</h2>
+
+<form action="/admin/search" method="GET">
+
+<input
+type="text"
+name="username"
+placeholder="Kullanıcı Adı"
+required>
+
+<button>Ara</button>
+
+</form>
+
+<hr>
+
+<!-- Para Ver -->
+
+<h2>💶 Para Ver</h2>
+
+<form action="/admin/money" method="POST">
+
+<input
+type="text"
+name="username"
+placeholder="Kullanıcı Adı"
+required>
+
+<input
+type="number"
+name="amount"
+placeholder="Miktar (€)"
+required>
+
+<button>Para Ver</button>
+
+</form>
+
+<hr>
+
+<!-- Ehliyet Ver -->
+
+<h2>🚗 Ehliyet Ver</h2>
+
+<form action="/admin/license" method="POST">
+
+<input
+type="text"
+name="username"
+placeholder="Kullanıcı Adı"
+required>
+
+<select name="license">
+
+<option>A</option>
+
+<option>A1</option>
+
+<option>A2</option>
+
+<option>B</option>
+
+<option>BE</option>
+
+<option>C</option>
+
+<option>CE</option>
+
+<option>D</option>
+
+<option>DE</option>
+
+</select>
+
+<button>Ehliyet Ver</button>
+
+</form>
+
+<hr>
+
+<!-- Tapu Ver -->
+
+<h2>🏠 Tapu Ver</h2>
+
+<form action="/admin/title" method="POST">
+
+<input
+type="text"
+name="username"
+placeholder="Kullanıcı Adı"
+required>
+
+<input
+type="text"
+name="garage"
+placeholder="Garaj No"
+required>
+
+<input
+type="text"
+name="title"
+placeholder="Tapu No"
+required>
+
+<button>Tapu Ver</button>
+
+</form>
+
+<hr>
+
+<!-- Ceza Kes -->
+
+<h2>🚔 Ceza Kes</h2>
+
+<form action="/admin/fine" method="POST">
+
+<input
+type="text"
+name="username"
+placeholder="Kullanıcı Adı"
+required>
+
+<select name="type">
+
+<option>Ehliyete El Koyma</option>
+
+<option>Ehliyete Süreli El Koyma</option>
+
+<option>Para Cezası</option>
+
+</select>
+
+<input
+type="text"
+name="amount"
+placeholder="Süre veya €"
+required>
+
+<button>Ceza Kes</button>
+
+</form>
+
+<hr>
+
+<a href="/home">
+
+<button>Ana Sayfaya Dön</button>
+
+</a>
+
+</div>
+
+</body>
+
+</html>

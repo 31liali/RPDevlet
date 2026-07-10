@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Param</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>💶 Euro Bakiyesi</h1>
+
+    <div class="card">
+
+        <h2>{{ money }} €</h2>
+
+        {% if money == 0 %}
+
+            <p>Henüz paran bulunmuyor.</p>
+
+        {% else %}
+
+            <p>Bakiyen güvenli şekilde kayıt altındadır.</p>
+
+        {% endif %}
+
+    </div>
+
+    <br>
+
+    <a href="/home">
+
+        <button>Ana Sayfa</button>
+
+    </a>
+
+</div>
+
+</body>
+</html>

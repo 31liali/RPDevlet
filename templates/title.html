@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tapu Bilgileri</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏠 Tapu Bilgileri</h1>
+
+    <div class="card">
+
+        {% if garage != "Yok" %}
+
+            <h2>Garaj Numarası</h2>
+
+            <p>{{ garage }}</p>
+
+            <br>
+
+            <h2>Tapu Numarası</h2>
+
+            <p>{{ title }}</p>
+
+        {% else %}
+
+            <h2>❌ Tapu Bulunmuyor</h2>
+
+            <p>Henüz sana kayıtlı bir tapu yok.</p>
+
+        {% endif %}
+
+    </div>
+
+    <br>
+
+    <a href="/home">
+
+        <button>Ana Sayfaya Dön</button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

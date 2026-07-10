@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kullanıcı Bilgileri</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>👤 Kullanıcı Bilgileri</h1>
+
+    <div class="card">
+
+        <table>
+
+            <tr>
+                <td><b>Kullanıcı Adı</b></td>
+                <td>{{ target.username }}</td>
+            </tr>
+
+            <tr>
+                <td><b>Yetki</b></td>
+                <td>{{ target.role }}</td>
+            </tr>
+
+            <tr>
+                <td><b>Para</b></td>
+                <td>{{ target.money }} €</td>
+            </tr>
+
+            <tr>
+                <td><b>Ehliyet</b></td>
+
+                <td>
+
+                {% if target.license %}
+
+                    {{ target.license_type }}
+
+                {% else %}
+
+                    Yok
+
+                {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Ehliyet Durumu</b></td>
+
+                <td>
+
+                {% if target.license_blocked %}
+
+                    {% if target.license_block_days == -1 %}
+
+                        Süresiz El Konuldu
+
+                    {% else %}
+
+                        {{ target.license_block_days }} Gün El Konuldu
+
+                    {% endif %}
+
+                {% else %}
+
+                    Aktif
+
+                {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Garaj No</b></td>
+
+                <td>{{ target.garage_no }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Tapu No</b></td>
+
+                <td>{{ target.title_no }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td><b>Para Cezası</b></td>
+
+                <td>{{ target.fine_money }} €</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <a href="/admin">
+
+        <button>
+
+            Admin Paneline Dön
+
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

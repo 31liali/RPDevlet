@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ehliyet Bilgileri</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🚗 Ehliyet Bilgileri</h1>
+
+<div class="card">
+
+{% if license %}
+
+<h2>Durum</h2>
+
+<p>✅ Ehliyet Mevcut</p>
+
+<h2>Sınıf</h2>
+
+<p>{{ license_type }}</p>
+
+{% if user.license_blocked %}
+
+<h2>⚠️ Ehliyet Durumu</h2>
+
+<p>Ehliyete El Konuldu</p>
+
+<p>Kalan Süre:
+{{ user.license_block_days }} Gün</p>
+
+{% else %}
+
+<p>Ehliyet Aktif</p>
+
+{% endif %}
+
+{% else %}
+
+<h2>❌ Ehliyet Bulunmuyor</h2>
+
+{% endif %}
+
+</div>
+
+<br>
+
+<a href="/home">
+
+<button>Ana Sayfaya Dön</button>
+
+</a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cezalarım</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🚔 Cezalarım</h1>
+
+<div class="card">
+
+<h2>💶 Toplam Para Cezası</h2>
+
+<p>{{ user.fine_money }} €</p>
+
+<hr>
+
+<h2>🚗 Ehliyet Durumu</h2>
+
+{% if user.license_blocked %}
+
+{% if user.license_block_days == -1 %}
+
+<p style="color:red;">
+❌ Ehliyete Süresiz El Konulmuş
+</p>
+
+{% else %}
+
+<p style="color:orange;">
+⏳ Ehliyete
+{{ user.license_block_days }}
+Gün El Konulmuş
+</p>
+
+{% endif %}
+
+{% else %}
+
+<p style="color:lime;">
+✅ Ehliyet Aktif
+</p>
+
+{% endif %}
+
+<hr>
+
+<h2>📋 Ceza Açıklaması</h2>
+
+{% if user.fines %}
+
+<pre>
+
+{{ user.fines }}
+
+</pre>
+
+{% else %}
+
+<p>
+
+Herhangi bir cezan bulunmuyor.
+
+</p>
+
+{% endif %}
+
+</div>
+
+<br>
+
+<a href="/home">
+
+<button>
+
+Ana Sayfa
+
+</button>
+
+</a>
+
+</div>
+
+</body>
+
+</html>
