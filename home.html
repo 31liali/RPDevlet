@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,127 +11,146 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="manifest" href="manifest.json">
+
 </head>
+
 
 <body>
 
+
 <div class="phone">
+
 
 <div class="header">
 
 <h1>🏛 RPDevlet</h1>
 
-<p>Hoş Geldin</p>
+<p>Türkiye Roleplay Devlet Sistemi</p>
 
 </div>
 
-<div style="padding:20px;">
+
 
 <div class="card">
 
-<h2>👤 Vatandaş</h2>
 
-<p><b>ID:</b> RP-000001</p>
+<h2>👤 Profil</h2>
 
-<p><b>Durum:</b> <span class="badge">Aktif</span></p>
+
+<p>
+Kullanıcı:
+<span id="username">
+Yükleniyor...
+</span>
+</p>
+
+
+<p>
+💶 Bakiye:
+<span id="balance">
+0 €
+</span>
+</p>
+
+
+<p>
+Rol:
+<span id="role">
+Vatandaş
+</span>
+</p>
+
+
+<p>
+📅 Kayıt:
+<span id="created">
+-
+</span>
+</p>
+
+
+<button id="logoutBtn">
+🚪 Çıkış Yap
+</button>
+
 
 </div>
 
-</div>
+
+
+
 
 <div class="menu">
 
-<div class="item">
 
-<div class="icon">👤</div>
+<button onclick="location.href='trbank.html'">
 
-<h3>Profil</h3>
+🏦 TRBank
 
-<p>Kişisel bilgiler</p>
+</button>
 
-</div>
 
-<div class="item">
+<button onclick="location.href='notifications.html'">
 
-<div class="icon">🚗</div>
+🔔 Bildirimler
 
-<h3>Ehliyet</h3>
+</button>
 
-<p>Ehliyet bilgileri</p>
 
-</div>
+<button onclick="location.href='license.html'">
 
-<div class="item">
+🚗 Dijital Ehliyet
 
-<div class="icon">🏠</div>
+</button>
 
-<h3>Tapu</h3>
 
-<p>Tapularım</p>
+<button onclick="location.href='property.html'">
 
-</div>
+🏠 Tapu
 
-<div class="item">
+</button>
 
-<div class="icon">🚔</div>
 
-<h3>Cezalar</h3>
+<button onclick="location.href='fines.html'">
 
-<p>Aktif cezalar</p>
+🚔 Cezalar
 
-</div>
+</button>
 
-<div class="item">
 
-<div class="icon">📄</div>
+<button onclick="location.href='documents.html'">
 
-<h3>Belgeler</h3>
+📄 Belgeler
 
-<p>Devlet belgeleri</p>
+</button>
 
-</div>
 
-<div class="item">
+<button onclick="location.href='deposit.html'">
 
-<div class="icon">⚙️</div>
+💶 Euro Yükle
 
-<h3>Ayarlar</h3>
+</button>
 
-<p>Uygulama ayarları</p>
 
-</div>
+<button onclick="location.href='admin.html'">
+
+👮 Admin Paneli
+
+</button>
+
 
 </div>
 
-<div class="bottom">
 
-<div>
-
-🏠
-
-<span>Ana Sayfa</span>
 
 </div>
 
-<div>
 
-🔔
 
-<span>Bildirim</span>
+<script type="module" src="home.js"></script>
 
-</div>
-
-<div>
-
-👤
-
-<span>Profil</span>
-
-</div>
-
-</div>
-
-</div>
 
 </body>
+
 </html>
