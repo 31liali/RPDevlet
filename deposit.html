@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TRBank - Euro Yükle</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="phone">
+
+
+<div class="header">
+
+<h1>🏦 TRBank</h1>
+
+<p>Euro Yükleme</p>
+
+</div>
+
+
+
+<div style="padding:20px;">
+
+
+<div class="card">
+
+<h2>💶 Euro Yükle</h2>
+
+<br>
+
+
+<label class="upload">
+
+<input type="file" accept="image/*" capture="environment" id="photo" hidden>
+
+<span>📷</span>
+
+<p>Fotoğraf çek</p>
+
+</label>
+
+
+
+<button class="primary" onclick="sendPhoto()">
+
+Gönder
+
+</button>
+
+
+
+<div id="result" style="display:none;margin-top:20px;">
+
+
+<div class="card">
+
+<h3>🤖 Yapay Zeka Tahmini</h3>
+
+<br>
+
+<h1 id="amount">
+0 €
+</h1>
+
+
+<p class="badge">
+
+🟡 Admin Onayı Bekleniyor
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="bottom">
+
+<div>
+🏠
+<span>Ana Sayfa</span>
+</div>
+
+
+<div>
+🏦
+<span>TRBank</span>
+</div>
+
+
+<div>
+👤
+<span>Profil</span>
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+function sendPhoto(){
+
+
+let file=document.getElementById("photo").files[0];
+
+
+if(!file){
+
+alert("Önce fotoğraf çekmelisin.");
+
+return;
+
+}
+
+
+// Şimdilik örnek değer
+// Daha sonra yapay zeka bağlanacak
+
+let euro=Math.floor(Math.random()*20)+1;
+
+
+document.getElementById("amount").innerHTML=euro+" €";
+
+
+document.getElementById("result").style.display="block";
+
+
+alert("Fotoğraf admin onayına gönderildi.");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
