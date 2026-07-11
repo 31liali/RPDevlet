@@ -1,90 +1,69 @@
-// script.js
-
 import {
     auth,
-    db,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    doc,
-    setDoc,
-    onAuthStateChanged
+    db
 } from "./firebase.js";
 
 
-// Sayfa geçişleri
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+
+// Sayfa değiştirme
 
 window.showRegister = function(){
 
-    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("loginPage").style.display="none";
 
-    document.getElementById("registerPage").style.display = "block";
+    document.getElementById("registerPage").style.display="block";
 
 };
+
 
 
 window.showLogin = function(){
 
-    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("registerPage").style.display="none";
 
-    document.getElementById("loginPage").style.display = "block";
+    document.getElementById("loginPage").style.display="block";
 
 };
 
 
 
-// Zaten giriş yaptıysa direkt girsin
-
-onAuthStateChanged(auth,(user)=>{
-
-    if(user){
-
-        if(location.pathname.endsWith("index.html") || location.pathname === "/"){
-
-            window.location.href="home.html";
-
-        }
-
-    }
-
-});
 
 
-
-
-// Kayıt
+// KAYIT
 
 window.register = async function(){
 
 
     const username =
-    document.getElementById("regUser").value
+    document.getElementById("regUser")
+    .value
     .trim()
     .toLowerCase();
 
 
+
     const password =
-    document.getElementById("regPass").value;
+    document.getElementById("regPass")
+    .value;
+
 
 
     const password2 =
-    document.getElementById("regPass2").value;
+    document.getElementById("regPass2")
+    .value;
 
-
-
-    if(username.length < 3){
-
-        alert("Kullanıcı adı en az 3 karakter olmalı.");
-        return;
-
-    }
-
-
-    if(password.length < 8){
-
-        alert("Şifre en az 8 karakter olmalı.");
-        return;
-
-    }
 
 
     if(password !== password2){
@@ -96,7 +75,16 @@ window.register = async function(){
 
 
 
-    const fakeEmail =
+    if(username.length < 3){
+
+        alert("Kullanıcı adı kısa.");
+        return;
+
+    }
+
+
+
+    const email =
     username + "@rpdevlet.app";
 
 
@@ -104,38 +92,32 @@ window.register = async function(){
     try{
 
 
-        const userCredential =
+        const result =
         await createUserWithEmailAndPassword(
             auth,
-            fakeEmail,
+            email,
             password
         );
 
 
+
         await setDoc(
+
             doc(
                 db,
                 "users",
-                userCredential.user.uid
+                result.user.uid
             ),
+
             {
 
                 username: username,
 
-                balance: 0,
+                balance:0,
 
                 admin:false,
 
-                createdAt:new Date(),
-
-                profile:{
-
-                    name:"",
-                    surname:"",
-                    birthDate:"",
-                    phone:""
-
-                }
+                createdAt:new Date()
 
             }
 
@@ -143,17 +125,16 @@ window.register = async function(){
 
 
 
-        alert("Hesap oluşturuldu!");
+        alert("Kayıt başarılı.");
 
-        window.location.href="home.html";
+        location.href="home.html";
 
 
 
-    }catch(error){
-
+    }
+    catch(error){
 
         alert(error.message);
-
 
     }
 
@@ -164,24 +145,27 @@ window.register = async function(){
 
 
 
-// Giriş
+
+// GİRİŞ
 
 window.login = async function(){
 
 
     const username =
-    document.getElementById("loginUser").value
+    document.getElementById("loginUser")
+    .value
     .trim()
     .toLowerCase();
 
 
 
     const password =
-    document.getElementById("loginPass").value;
+    document.getElementById("loginPass")
+    .value;
 
 
 
-    const fakeEmail =
+    const email =
     username + "@rpdevlet.app";
 
 
@@ -193,21 +177,27 @@ window.login = async function(){
 
             auth,
 
-            fakeEmail,
+            email,
 
             password
 
         );
 
 
-        window.location.href="home.html";
+
+        location.href="home.html";
 
 
+    }
+    catch(error){
 
-    }catch(error){
+
+        alert(
+            "Kullanıcı adı veya şifre yanlış."
+        );
 
 
-        alert("Kullanıcı adı veya şifre yanlış.");
+        console.log(error);
 
     }
 

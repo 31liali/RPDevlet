@@ -148,9 +148,17 @@ Vatandaş
 
 
 
-<script type="module" src="home.js"></script>
+<script type="module" src="./script.js"></script>
 
+<script>
+
+if("serviceWorker" in navigator){
+
+    navigator.serviceWorker.register("./sw.js");
+
+}
+
+</script>
 
 </body>
-
 </html>
