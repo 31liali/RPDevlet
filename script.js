@@ -1,205 +1,98 @@
+console.log("script.js başladı");
+
 import {
     auth,
-    db
-} from "./firebase.js";
-
-
-import {
+    db,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-
-import {
+    signInWithEmailAndPassword,
     doc,
     setDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "./firebase.js";
 
-
-
-// Sayfa değiştirme
-
-window.showRegister = function(){
-
-    document.getElementById("loginPage").style.display="none";
-
-    document.getElementById("registerPage").style.display="block";
-
+// Sayfalar
+window.showRegister = () => {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "block";
 };
 
-
-
-window.showLogin = function(){
-
-    document.getElementById("registerPage").style.display="none";
-
-    document.getElementById("loginPage").style.display="block";
-
+window.showLogin = () => {
+    document.getElementById("loginPage").style.display = "block";
+    document.getElementById("registerPage").style.display = "none";
 };
 
+// Kayıt
+window.register = async () => {
 
+    const username = document.getElementById("regUser").value.trim().toLowerCase();
+    const password = document.getElementById("regPass").value;
+    const password2 = document.getElementById("regPass2").value;
 
-
-
-// KAYIT
-
-window.register = async function(){
-
-
-    const username =
-    document.getElementById("regUser")
-    .value
-    .trim()
-    .toLowerCase();
-
-
-
-    const password =
-    document.getElementById("regPass")
-    .value;
-
-
-
-    const password2 =
-    document.getElementById("regPass2")
-    .value;
-
-
-
-    if(password !== password2){
-
-        alert("Şifreler aynı değil.");
+    if (username.length < 3) {
+        alert("Kullanıcı adı en az 3 karakter olmalı.");
         return;
-
     }
 
-
-
-    if(username.length < 3){
-
-        alert("Kullanıcı adı kısa.");
+    if (password !== password2) {
+        alert("Şifreler uyuşmuyor.");
         return;
-
     }
 
+    try {
 
+        const email = username + "@rpdevlet.app";
 
-    const email =
-    username + "@rpdevlet.app";
-
-
-
-    try{
-
-
-        const result =
-        await createUserWithEmailAndPassword(
+        const user = await createUserWithEmailAndPassword(
             auth,
             email,
             password
         );
-
-
 
         await setDoc(
-
-            doc(
-                db,
-                "users",
-                result.user.uid
-            ),
-
+            doc(db, "users", user.user.uid),
             {
-
-                username: username,
-
-                balance:0,
-
-                admin:false,
-
-                createdAt:new Date()
-
+                username,
+                balance: 0,
+                role: "Vatandaş",
+                createdAt: Date.now(),
+                admin: false
             }
-
         );
 
+        location.href = "home.html";
 
+    } catch (e) {
 
-        alert("Kayıt başarılı.");
-
-        location.href="home.html";
-
-
-
-    }
-    catch(error){
-
-        alert(error.message);
+        alert(e.message);
+        console.error(e);
 
     }
-
 
 };
 
+// Giriş
+window.login = async () => {
 
+    const username = document.getElementById("loginUser").value.trim().toLowerCase();
+    const password = document.getElementById("loginPass").value;
 
-
-
-
-// GİRİŞ
-
-window.login = async function(){
-
-
-    const username =
-    document.getElementById("loginUser")
-    .value
-    .trim()
-    .toLowerCase();
-
-
-
-    const password =
-    document.getElementById("loginPass")
-    .value;
-
-
-
-    const email =
-    username + "@rpdevlet.app";
-
-
-
-    try{
-
+    try {
 
         await signInWithEmailAndPassword(
-
             auth,
-
-            email,
-
+            username + "@rpdevlet.app",
             password
-
         );
 
+        location.href = "home.html";
 
+    } catch (e) {
 
-        location.href="home.html";
-
-
-    }
-    catch(error){
-
-
-        alert(
-            "Kullanıcı adı veya şifre yanlış."
-        );
-
-
-        console.log(error);
+        alert("Kullanıcı adı veya şifre yanlış.");
+        console.error(e);
 
     }
-
-
+window.login = window.login;
+window.register = window.register;
+window.showRegister = window.showRegister;
+window.showLogin = window.showLogin;
 };
