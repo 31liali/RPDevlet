@@ -1,5 +1,3 @@
-console.log("script.js başladı");
-
 import {
     auth,
     db,
@@ -9,19 +7,25 @@ import {
     setDoc
 } from "./firebase.js";
 
-// Sayfalar
-window.showRegister = () => {
+// ==========================
+// Sayfa Değiştirme
+// ==========================
+
+window.showRegister = function () {
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("registerPage").style.display = "block";
 };
 
-window.showLogin = () => {
-    document.getElementById("loginPage").style.display = "block";
+window.showLogin = function () {
     document.getElementById("registerPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
 };
 
+// ==========================
 // Kayıt
-window.register = async () => {
+// ==========================
+
+window.register = async function () {
 
     const username = document.getElementById("regUser").value.trim().toLowerCase();
     const password = document.getElementById("regPass").value;
@@ -41,36 +45,39 @@ window.register = async () => {
 
         const email = username + "@rpdevlet.app";
 
-        const user = await createUserWithEmailAndPassword(
+        const result = await createUserWithEmailAndPassword(
             auth,
             email,
             password
         );
 
         await setDoc(
-            doc(db, "users", user.user.uid),
+            doc(db, "users", result.user.uid),
             {
-                username,
+                username: username,
                 balance: 0,
                 role: "Vatandaş",
-                createdAt: Date.now(),
-                admin: false
+                admin: false,
+                createdAt: Date.now()
             }
         );
 
         location.href = "home.html";
 
-    } catch (e) {
+    } catch (err) {
 
-        alert(e.message);
-        console.error(e);
+        console.error(err);
+        alert(err.message);
 
     }
 
 };
 
+// ==========================
 // Giriş
-window.login = async () => {
+// ==========================
+
+window.login = async function () {
 
     const username = document.getElementById("loginUser").value.trim().toLowerCase();
     const password = document.getElementById("loginPass").value;
@@ -85,14 +92,11 @@ window.login = async () => {
 
         location.href = "home.html";
 
-    } catch (e) {
+    } catch (err) {
 
+        console.error(err);
         alert("Kullanıcı adı veya şifre yanlış.");
-        console.error(e);
 
     }
-window.login = window.login;
-window.register = window.register;
-window.showRegister = window.showRegister;
-window.showLogin = window.showLogin;
+
 };
